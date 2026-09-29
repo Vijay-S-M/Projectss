@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin | Restaurant POS</title>
+
+    <link rel="stylesheet" href="admin.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="logo">
+            <div class="logo-icon">🍽️</div>
+            <div>
+                <h2>Restaurant</h2>
+                <span>POS SYSTEM</span>
+            </div>
+        </div>
+
+        <nav>
+
+            <button class="nav-item active" onclick="showPage('dashboard', this)">
+                <span>📊</span>
+                Dashboard
+            </button>
+
+            <button class="nav-item" onclick="showPage('tables', this)">
+                <span>🪑</span>
+                Tables
+            </button>
+
+            <button class="nav-item" onclick="showPage('billing', this)">
+                <span>🧾</span>
+                Billing
+            </button>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+            <div class="admin-profile">
+                <div class="avatar">A</div>
+                <div>
+                    <strong>Administrator</strong>
+                    <small>Cash Counter</small>
+                </div>
+            </div>
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN -->
+    <main class="main">
+
+        <!-- TOPBAR -->
+        <header class="topbar">
+
+            <div>
+                <h1 id="pageTitle">Dashboard</h1>
+                <p>Restaurant management system</p>
+            </div>
+
+            <button class="refresh-btn" onclick="loadDashboard()">
+                🔄 Refresh
+            </button>
+
+        </header>
+
+
+        <!-- ================= DASHBOARD ================= -->
+
+        <section id="dashboardPage" class="page active-page">
+
+            <div class="welcome">
+                <div>
+                    <h2>Welcome back, Admin 👋</h2>
+                    <p>Manage tables, orders and payments from here.</p>
+                </div>
+
+                <div class="date-box">
+                    <span>Today</span>
+                    <strong id="currentDate"></strong>
+                </div>
+            </div>
+
+
+            <!-- STATS -->
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+                    <div class="stat-icon blue">🪑</div>
+                    <div>
+                        <span>Total Tables</span>
+                        <h2 id="totalTables">0</h2>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon green">✅</div>
+                    <div>
+                        <span>Available</span>
+                        <h2 id="availableTables">0</h2>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon orange">🔴</div>
+                    <div>
+                        <span>Occupied</span>
+                        <h2 id="occupiedTables">0</h2>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon purple">💰</div>
+                    <div>
+                        <span>Active Sales</span>
+                        <h2 id="activeSales">₹0</h2>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- TABLE OVERVIEW -->
+
+            <div class="section-header">
+                <div>
+                    <h2>Table Overview</h2>
+                    <p>Current restaurant table status</p>
+                </div>
+
+                <button onclick="showPageById('tables')">
+                    View All Tables →
+                </button>
+            </div>
+
+            <div id="dashboardTables" class="table-grid">
+                <div class="loading">Loading tables...</div>
+            </div>
+
+        </section>
+
+
+        <!-- ================= TABLES ================= -->
+
+        <section id="tablesPage" class="page">
+
+            <div class="page-heading">
+                <div>
+                    <h2>Table Dashboard</h2>
+                    <p>Monitor active tables and customer orders.</p>
+                </div>
+
+                <button class="primary-btn" onclick="loadTables()">
+                    🔄 Refresh Tables
+                </button>
+            </div>
+
+            <div class="table-summary">
+
+                <div>
+                    <span>Available</span>
+                    <strong id="tableAvailable">0</strong>
+                </div>
+
+                <div>
+                    <span>Occupied</span>
+                    <strong id="tableOccupied">0</strong>
+                </div>
+
+                <div>
+                    <span>Total</span>
+                    <strong id="tableTotal">0</strong>
+                </div>
+
+            </div>
+
+            <div id="allTables" class="table-grid">
+                <div class="loading">Loading tables...</div>
+            </div>
+
+        </section>
+
+
+        <!-- ================= BILLING ================= -->
+
+        <section id="billingPage" class="page">
+
+            <div class="page-heading">
+                <div>
+                    <h2>Cash Counter</h2>
+                    <p>Select an occupied table to generate the final bill.</p>
+                </div>
+            </div>
+
+            <div id="billingTables" class="billing-table-list">
+                <div class="loading">Loading billing information...</div>
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- ================= TABLE MODAL ================= -->
+
+<div id="tableModal" class="modal">
+
+    <div class="modal-box">
+
+        <button class="close-btn" onclick="closeModal()">×</button>
+
+        <div class="modal-header">
+            <div>
+                <span class="modal-label">TABLE</span>
+                <h2 id="modalTableNumber">T01</h2>
+            </div>
+
+            <span id="modalStatus" class="status-badge occupied">
+                OCCUPIED
+            </span>
+        </div>
+
+        <div id="modalOrders" class="modal-orders">
+            Loading...
+        </div>
+
+        <div class="modal-total">
+            <span>Current Total</span>
+            <strong id="modalTotal">₹0</strong>
+        </div>
+
+        <button class="checkout-open-btn" onclick="openBill()">
+            🧾 View Final Bill
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- ================= BILL MODAL ================= -->
+
+<div id="billModal" class="modal">
+
+    <div class="modal-box bill-box">
+
+        <button class="close-btn" onclick="closeBillModal()">×</button>
+
+        <div class="bill-header">
+            <div>
+                <h2>🧾 Final Bill</h2>
+                <p id="billTableNumber">Table T01</p>
+            </div>
+
+            <span>RESTAURANT POS</span>
+        </div>
+
+
+        <div id="billItems" class="bill-items">
+            Loading...
+        </div>
+
+
+        <div class="bill-summary">
+
+            <div>
+                <span>Subtotal</span>
+                <strong id="billSubtotal">₹0</strong>
+            </div>
+
+            <div>
+                <span>Tax</span>
+                <strong id="billTax">₹0</strong>
+            </div>
+
+            <div>
+                <span>Service Charge</span>
+                <strong id="billService">₹0</strong>
+            </div>
+
+            <div class="grand-total">
+                <span>Grand Total</span>
+                <strong id="billGrandTotal">₹0</strong>
+            </div>
+
+        </div>
+
+
+        <!-- PAYMENT -->
+
+        <div class="payment-section">
+
+            <h3>Payment Method</h3>
+
+            <div class="payment-options">
+
+                <button
+                    class="payment-option"
+                    onclick="selectPayment('CASH', this)">
+                    💵
+                    <span>Cash</span>
+                </button>
+
+                <button
+                    class="payment-option"
+                    onclick="selectPayment('CARD', this)">
+                    💳
+                    <span>Card</span>
+                </button>
+
+                <button
+                    class="payment-option"
+                    onclick="selectPayment('UPI', this)">
+                    📱
+                    <span>UPI</span>
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <button
+            id="checkoutBtn"
+            class="complete-payment-btn"
+            onclick="completeCheckout()"
+            disabled>
+            🔒 Select Payment Method
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- TOAST -->
+
+<div id="toast" class="toast">
+    <span id="toastMessage"></span>
+</div>
+
+
+<script src="admin.js"></script>
+
+</body>
+</html>

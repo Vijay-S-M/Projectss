@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- ICONS -->
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+
+<body>
+
+    <div class="admin-container">
+
+        <!-- SIDEBAR -->
+
+        <div class="sidebar">
+
+            <h2>
+                <i class="fa-solid fa-user-shield"></i>
+                Admin Panel
+            </h2>
+
+            <button onclick="showSection('dashboardSection')">
+                <i class="fa-solid fa-chart-line"></i>
+                Dashboard
+            </button>
+
+            <button onclick="showSection('addSection')">
+                <i class="fa-solid fa-user-plus"></i>
+                Add Alumni
+            </button>
+
+            <button onclick="showSection('deleteSection')">
+                <i class="fa-solid fa-trash"></i>
+                Delete Alumni
+            </button>
+
+            <button onclick="showSection('studentsSection')">
+                <i class="fa-solid fa-users"></i>
+                View Students
+            </button>
+
+        </div>
+
+        <!-- CONTENT -->
+
+        <div class="content">
+
+            <!-- DASHBOARD -->
+
+            <div id="dashboardSection"
+                 class="section active-section">
+
+                <h1>Dashboard Statistics</h1>
+
+                <div class="stats-container">
+
+                    <div class="stat-card glow-card">
+
+                        <i class="fa-solid fa-user-graduate"></i>
+
+                        <h2 id="totalStudents">0</h2>
+
+                        <p>Total Students</p>
+
+                    </div>
+
+                    <div class="stat-card glow-card">
+
+                        <i class="fa-solid fa-people-group"></i>
+
+                        <h2 id="totalAlumni">0</h2>
+
+                        <p>Total Alumni</p>
+
+                    </div>
+
+                    <div class="stat-card glow-card">
+
+                        <i class="fa-solid fa-briefcase"></i>
+
+                        <h2 id="commonRole">No Data</h2>
+
+                        <p>Most Common Role</p>
+
+                    </div>
+
+                    <div class="stat-card glow-card">
+
+                        <i class="fa-solid fa-bell"></i>
+
+                        <h2 id="totalReminders">0</h2>
+
+                        <p>Total Reminders</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- ADD ALUMNI -->
+
+            <div id="addSection"
+                 class="section"
+                 style="display:none;">
+
+                <h1>Add Alumni</h1>
+
+                <div class="form-grid">
+
+                    <input type="text"
+                           id="alumniName"
+                           placeholder="Name">
+
+                    <input type="text"
+                           id="alumniCompany"
+                           placeholder="Company">
+
+                    <input type="text"
+                           id="alumniRole"
+                           placeholder="Role">
+
+                    <input type="text"
+                           id="alumniSkills"
+                           placeholder="Skills">
+
+                    <input type="number"
+                           id="alumniBatch"
+                           placeholder="Batch Year">
+
+                    <input type="text"
+                           id="alumniContact"
+                           placeholder="Contact">
+
+                </div>
+
+                <button class="main-btn"
+                        onclick="addAlumni()">
+                    Add Alumni
+                </button>
+
+            </div>
+
+            <!-- DELETE ALUMNI -->
+
+            <div id="deleteSection"
+                 class="section"
+                 style="display:none;">
+
+                <h1>Delete Alumni</h1>
+
+                <div id="alumniList"></div>
+
+            </div>
+
+            <!-- STUDENTS -->
+
+            <div id="studentsSection"
+                 class="section"
+                 style="display:none;">
+
+                <h1>Registered Students</h1>
+
+                <div id="studentsList"></div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

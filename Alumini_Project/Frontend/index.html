@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Login</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <div class="auth-container">
+
+        <div class="auth-card">
+
+            <h1>Alumni Query Assistant</h1>
+
+            <!-- LOGIN FORM -->
+
+            <div id="loginForm">
+
+                <h2>Login</h2>
+
+                <input
+                    type="email"
+                    id="loginEmail"
+                    placeholder="Enter Email"
+                >
+
+                <input
+                    type="password"
+                    id="loginPassword"
+                    placeholder="Enter Password"
+                >
+
+                <button onclick="loginStudent()">
+                    Login
+                </button>
+
+                <p>
+                    New User?
+
+                    <span onclick="showRegister()">
+                        Register Here
+                    </span>
+                </p>
+
+            </div>
+
+            <!-- REGISTER FORM -->
+
+            <div id="registerForm" style="display:none;">
+
+                <h2>Register</h2>
+
+                <input
+                    type="text"
+                    id="studentName"
+                    placeholder="Enter Name"
+                >
+
+                <input
+                    type="email"
+                    id="studentEmail"
+                    placeholder="Enter Email"
+                >
+
+                <input
+                    type="password"
+                    id="studentPassword"
+                    placeholder="Enter Password"
+                >
+
+                <input
+                    type="text"
+                    id="studentDepartment"
+                    placeholder="Enter Department"
+                >
+
+                <button onclick="registerStudent()">
+                    Register
+                </button>
+
+                <p>
+                    Already have account?
+
+                    <span onclick="showLogin()">
+                        Login Here
+                    </span>
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

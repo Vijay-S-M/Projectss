@@ -1,0 +1,211 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoodPoint | Restaurant</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="navbar">
+    <div class="logo">
+        <span>🍽️</span>
+        Food<span>Point</span>
+    </div>
+
+    <div class="nav-right">
+        <div class="table-status">
+            <span class="status-dot"></span>
+            <span id="selectedTableText">Select Table</span>
+        </div>
+
+        <button class="cart-button" onclick="openCart()">
+            🛒
+            <span>Cart</span>
+            <b id="cartCount">0</b>
+        </button>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="hero-content">
+        <span class="hero-tag">✨ Fresh • Delicious • Made With Love</span>
+        <h1>Good Food.<br><span>Good Mood.</span></h1>
+        <p>
+            Discover delicious meals prepared fresh for you.
+            Choose your table, pick your favourites and enjoy.
+        </p>
+
+        <button onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})">
+            Explore Menu →
+        </button>
+    </div>
+
+    <div class="hero-food">
+        <div class="hero-circle"></div>
+        <div class="food-emoji">🍛</div>
+    </div>
+</section>
+
+<section class="table-section">
+    <div class="section-title">
+        <div>
+            <span>YOUR TABLE</span>
+            <h2>Select Your Table</h2>
+        </div>
+        <p>Choose your table before ordering</p>
+    </div>
+
+    <div id="tablesContainer" class="tables-container">
+        <div class="loading">Loading tables...</div>
+    </div>
+</section>
+
+<section class="menu-section" id="menu">
+
+    <div class="section-title">
+        <div>
+            <span>OUR MENU</span>
+            <h2>Choose Your Favourite</h2>
+        </div>
+        <div class="search-box">
+            🔍
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search food..."
+                oninput="searchFoods()"
+            >
+        </div>
+    </div>
+
+    <div class="categories">
+        <button class="category active" onclick="filterCategory('ALL', this)">
+            All
+        </button>
+
+        <button class="category" onclick="filterCategory('BIRYANI', this)">
+            🍛 Biryani
+        </button>
+
+        <button class="category" onclick="filterCategory('STARTERS', this)">
+            🍗 Starters
+        </button>
+
+        <button class="category" onclick="filterCategory('RICE', this)">
+            🍚 Rice
+        </button>
+
+        <button class="category" onclick="filterCategory('DRINKS', this)">
+            🥤 Drinks
+        </button>
+
+        <button class="category" onclick="filterCategory('DESSERTS', this)">
+            🍨 Desserts
+        </button>
+    </div>
+
+    <div id="foodsContainer" class="food-grid">
+        <div class="loading">Loading menu...</div>
+    </div>
+
+</section>
+
+<div class="floating-cart" onclick="openCart()">
+    <div class="floating-cart-icon">
+        🛒
+        <span id="floatingCartCount">0</span>
+    </div>
+
+    <div>
+        <strong>View Cart</strong>
+        <small id="floatingCartTotal">₹0.00</small>
+    </div>
+
+    <span>→</span>
+</div>
+
+<div id="cartModal" class="modal">
+    <div class="modal-content cart-modal">
+
+        <button class="close-btn" onclick="closeCart()">×</button>
+
+        <div class="modal-header">
+            <span>YOUR ORDER</span>
+            <h2>Shopping Cart 🛒</h2>
+        </div>
+
+        <div id="cartItems" class="cart-items"></div>
+
+        <div id="emptyCart" class="empty-cart">
+            <div>🛒</div>
+            <h3>Your cart is empty</h3>
+            <p>Add some delicious food to continue.</p>
+        </div>
+
+        <div class="bill-section">
+            <div>
+                <span>Subtotal</span>
+                <strong id="subtotal">₹0.00</strong>
+            </div>
+
+            <div>
+                <span>GST (5%)</span>
+                <strong id="gst">₹0.00</strong>
+            </div>
+
+            <div class="grand-total">
+                <span>Total</span>
+                <strong id="grandTotal">₹0.00</strong>
+            </div>
+        </div>
+
+        <button
+            id="placeOrderBtn"
+            class="place-order-btn"
+            onclick="placeOrder()"
+        >
+            Place Order →
+        </button>
+
+    </div>
+</div>
+
+<div id="successModal" class="modal">
+    <div class="modal-content success-modal">
+
+        <button class="close-btn" onclick="closeSuccess()">×</button>
+
+        <div class="success-icon">✓</div>
+
+        <h2>Order Placed!</h2>
+
+        <p>
+            Your order has been successfully sent to the kitchen.
+        </p>
+
+        <div class="success-info">
+            <div>
+                <span>Table</span>
+                <strong id="successTable">-</strong>
+            </div>
+
+            <div>
+                <span>Order Total</span>
+                <strong id="successTotal">₹0.00</strong>
+            </div>
+        </div>
+
+        <button onclick="closeSuccess()">Continue Ordering</button>
+
+    </div>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

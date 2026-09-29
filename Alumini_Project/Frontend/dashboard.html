@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width,
+                   initial-scale=1.0">
+
+    <title>Student Dashboard</title>
+
+    <link rel="stylesheet"
+          href="style.css">
+
+    <!-- ICONS -->
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+
+<body class="dashboard-body">
+
+    <div class="student-layout">
+
+        <!-- SIDEBAR -->
+
+        <div class="student-sidebar">
+
+            <h2>
+                <i class="fa-solid fa-graduation-cap"></i>
+                Student
+            </h2>
+
+            <button>
+                <i class="fa-solid fa-user"></i>
+                Profile
+            </button>
+
+            <button>
+                <i class="fa-solid fa-magnifying-glass"></i>
+                Search Alumni
+            </button>
+
+            <button>
+                <i class="fa-solid fa-robot"></i>
+                Career Assistant
+            </button>
+
+            <button>
+                <i class="fa-solid fa-bell"></i>
+                Reminders
+            </button>
+
+        </div>
+
+        <!-- MAIN CONTENT -->
+
+        <div class="student-content">
+
+            <!-- TOP BAR -->
+
+            <div class="top-bar">
+
+                <h1>
+                    Student Dashboard
+                </h1>
+
+                <!-- PROFILE -->
+
+            <div class="profile-card">
+
+    <div class="profile-icon">
+
+        <i class="fa-solid fa-user"></i>
+
+    </div>
+
+    <div class="profile-details">
+
+        <h3 id="profileName">
+            Student
+        </h3>
+
+        <p id="profileDepartment">
+            Department
+        </p>
+
+        <small id="profileEmail">
+            Email
+        </small>
+
+        <br><br>
+
+        <button
+            class="logout-btn"
+            onclick="logoutStudent()"
+        >
+            <i class="fa-solid fa-right-from-bracket"></i>
+
+            Logout
+        </button>
+
+    </div>
+
+</div>
+
+            </div>
+
+            <!-- SEARCH -->
+
+            <div class="dashboard-card">
+
+                <h2>
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    Search Alumni
+                </h2>
+
+                <div class="search-section">
+
+                    <input
+                        type="text"
+                        id="searchInput"
+                        placeholder="Search by skill/company"
+                    >
+
+                    <button onclick="searchAlumni()">
+                        Search
+                    </button>
+
+                </div>
+
+                <div id="results"></div>
+
+            </div>
+
+            <!-- CHATBOT -->
+
+            <div class="dashboard-card">
+
+                <h2>
+                    <i class="fa-solid fa-robot"></i>
+                    Career Query Assistant
+                </h2>
+
+                <div class="chat-container">
+
+                    <input
+                        type="text"
+                        id="questionInput"
+                        placeholder="Ask career related question..."
+                    >
+
+                    <button onclick="askQuestion()">
+                        Ask
+                    </button>
+
+                </div>
+
+                <div id="answerBox"></div>
+
+            </div>
+
+            <!-- REMINDERS -->
+
+            <div class="dashboard-card">
+
+                <h2>
+                    <i class="fa-solid fa-bell"></i>
+                    Reminders / Status
+                </h2>
+
+                <div id="remindersBox"></div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
